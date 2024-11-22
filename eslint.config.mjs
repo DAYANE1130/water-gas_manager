@@ -1,4 +1,4 @@
-import globals from 'globals';
+import globals  from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
@@ -20,7 +20,7 @@ export default [
 
       'camelcase': 'warn',
       'no-unused-vars': 'warn',
-      'eol-last':'error',
+      'eol-last': 'error',
       'prefer-const': ['error', { 'ignoreReadBeforeAssign': true }],
       'quotes': ['error', 'single'],
       'semi': ['error', 'always'],
@@ -28,7 +28,7 @@ export default [
 
       'max-len': [
         'error', 120, 100,
-        {'ignoreComments': true},
+        { 'ignoreComments': true },
       ],
       'max-lines-per-function': [
         'error',
