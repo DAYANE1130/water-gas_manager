@@ -1,6 +1,7 @@
 //import {  useState } from 'react';
 import ListMeasuresProvider from './Context/Listmeasures/ListMeasuresProvider';
 import ListMeasures from './Componentes/listMeasures/ListMeasures';
+import ConfirmMeasure from './Componentes/updateMeasures/ConfirmMeasure';
 
 function App() {
   //const [message, setMessage] = useState('');
@@ -15,16 +16,22 @@ function App() {
   */
 
   return (
-    <ListMeasuresProvider>
-      { /*     <div className="App">
+    <>
+      <ListMeasuresProvider>
+        { /*     <div className="App">
         <h1>Teste de Comunicação com o Backend</h1>
         <p>{message}</p>
       </div>*/}
-  
+        <ListMeasures />
+      </ListMeasuresProvider>
+
+      <div>
+        <ConfirmMeasure/>
+      </div>
+    </>
 
 
-      <ListMeasures />
-    </ListMeasuresProvider>
+
   );
 }
 
