@@ -2,7 +2,7 @@ import { useState } from "react"
 
 
 export default function ConfirmMeasure() {
-  
+
   const [formInfo, setFormInfo] = useState({ measure_uuid: '', confirmed_value: 0 });
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -63,24 +63,25 @@ export default function ConfirmMeasure() {
 
   return (
     <>
-      <h3>Confirmação das leituras</h3>
-      <form onSubmit={(event) => handleSubmit(event)} method="post">
+      <h1>Confirmação das leituras</h1>
+      <form onSubmit={(event) => handleSubmit(event)} method="patch">
         {/* <form action="" method=""> */}
         <label htmlFor="measure-uuid">
+        Insira aqui o código da leitura
           <input onChange={handleFormInfo} id="measure-uuid" type="text" name="measure_uuid" value={formInfo.measure_uuid} required />
-          Insira aqui o código da leitura
         </label>
         <br /><br />
         <label htmlFor="confirmed-value">
+        Insira aqui o novo valor
           <input onChange={handleFormInfo} id="confirmed-value" type="number" name="confirmed_value" value={formInfo.confirmed_value} required />
-          Insira aqui o novo valor
         </label>
         <br /><br />
 
-        <button>Enviar</button>
+        <button type="submit">Enviar</button>
       </form>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       {successMessage && <p style={{ color: "red" }}> Leitura atualizada com sucesso</p>}
+
       
     </>
   )
