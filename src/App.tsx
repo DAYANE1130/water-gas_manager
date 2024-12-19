@@ -2,6 +2,8 @@
 import ListMeasuresProvider from './Context/Listmeasures/ListMeasuresProvider';
 import ListMeasures from './Componentes/listMeasures/ListMeasures';
 import ConfirmMeasure from './Componentes/updateMeasures/ConfirmMeasure';
+import UploadMeasure from './Componentes/uploadMeasures/UploadMeasure';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   //const [message, setMessage] = useState('');
@@ -16,19 +18,17 @@ function App() {
   */
 
   return (
-    <>
-      <ListMeasuresProvider>
-        { /*     <div className="App">
-        <h1>Teste de Comunicação com o Backend</h1>
-        <p>{message}</p>
-      </div>*/}
+    <Routes>
+      <Route path="/leituras" element={
+        <ListMeasuresProvider>
         <ListMeasures />
-      </ListMeasuresProvider>
+      </ListMeasuresProvider>}
+      />
+      <Route path="/confirm" element={<ConfirmMeasure />} />
 
-      <div>
-        <ConfirmMeasure/>
-      </div>
-    </>
+      <Route path="/upload" element={<UploadMeasure />} />
+  
+    </Routes>
 
 
 
