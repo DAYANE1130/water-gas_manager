@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { ResponseApi } from "../../Interfaces/ListMeasures/measuresInterface";
+import { IResponseApi } from "../../Interfaces/ListMeasures/measuresInterface";
 
 type ListMeasuresContextType = {
  // readings: Readings[],
   //setCustomerListMeasure: React.Dispatch<React.SetStateAction<Readings[]>>
 
-  fetchCustomerList: (customer_code:string) => Promise<ResponseApi>// QUANDO A FUNÇÃO TIVER UM PARAMETRO TEM QUE TIPAR
+  fetchCustomerList: (customer_code:string) => Promise<IResponseApi>// QUANDO A FUNÇÃO TIVER UM PARAMETRO TEM QUE TIPAR
 
 };
 
@@ -13,7 +13,7 @@ const ListMeasuresContext = createContext<ListMeasuresContextType>(
   {
    // readings: [],
     // setCustomerListMeasure: () => { },
-    fetchCustomerList: async (): Promise<ResponseApi> => {
+    fetchCustomerList: async (): Promise<IResponseApi> => {
       return {
         data: undefined,
         erro: {

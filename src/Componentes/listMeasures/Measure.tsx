@@ -1,4 +1,4 @@
-import { Readings } from '../../Interfaces/ListMeasures/measuresInterface';
+import { IReadings } from '../../Interfaces/ListMeasures/measuresInterface';
 
 export default function Reading({
   measure_uuid,
@@ -6,7 +6,7 @@ export default function Reading({
   measure_type,
   has_confirmed,
   image_url,
-}: Readings) { //TIPA AS PROPS DE ACORDO COM A INTERFACE DE CADA LEITURA
+}: IReadings) { //TIPA AS PROPS DE ACORDO COM A INTERFACE DE CADA LEITURA
   // E RENDERIZA CADA LEITURA DE FORMA INDIVIDUAL
   return (
     < tbody >

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import ListMeasuresContext from "./ListMeasuresContext";
-import { ResponseApi } from "../../Interfaces/ListMeasures/measuresInterface";
+import { IResponseApi } from "../../Interfaces/ListMeasures/measuresInterface";
 
 
 
@@ -19,7 +19,7 @@ export default function ListMeasuresProvider({ children }: ListMeasuresProviderP
 
 
 
-  const fetchCustomerList = async (customer_code:string): Promise<ResponseApi> => {
+  const fetchCustomerList = async (customer_code:string): Promise<IResponseApi> => {
     try {
       const response = await fetch(`http://localhost:3000/customer/${customer_code}/list`);
       // const response = await fetch('http://localhost:3000/customer/13example_customer_code/list')

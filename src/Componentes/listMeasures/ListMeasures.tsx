@@ -2,7 +2,7 @@ import { useState, useContext, ChangeEvent } from "react";
 import ListMeasuresContext from "../../Context/Listmeasures/ListMeasuresContext";
 
 import Reading from "./Measure";
-import { Readings } from "../../Interfaces/ListMeasures/measuresInterface";
+import { IReadings } from "../../Interfaces/ListMeasures/measuresInterface";
 
 export default function listMeasures() {
 
@@ -14,7 +14,7 @@ export default function listMeasures() {
   const [customerCode, setCustomerCode] = useState('');
   const [searchCustomerCode, setSearchCustomerCode] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [readings, setReadings] = useState<Readings[] | undefined>([]);
+  const [readings, setReadings] = useState<IReadings[] | undefined>([]);
   const [filterTypeReadings, setFilterTypeReadings] = useState<"all" | "WATER" | "GAS">("all");
 
 
