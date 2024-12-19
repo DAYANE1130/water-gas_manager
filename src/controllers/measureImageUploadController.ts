@@ -6,11 +6,15 @@ const measureImageUploadController = {
   //Função que recebe a imagem base 64 e retorna a medida lida pela API do Gemini
   async measureUploadImage(req: Request, res: Response, next: NextFunction) {
     const { image, customerCode, measureDatetime, measureType } = req.body;
-
+  
     const result = await measureImageUploadService.createMeasure(image, customerCode, measureDatetime, measureType);
-    
+    console.log('eu sou a resposta enviada para o FRONT', result)
+
     if (result.error?.error_code === 'DOUBLE_REPORT') {
       return next({ status: 409, message: result.error })
+    }
+    if (result.error?.error_code === 'UNPROCESSABLE ENTITY') {
+      return next({ status: 422, message: result.error })
     }
     return res.status(200).json(result.data);
 

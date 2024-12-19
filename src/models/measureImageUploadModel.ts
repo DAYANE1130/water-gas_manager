@@ -24,7 +24,7 @@ const readingModel = {
 
   async saveReading(customerCode: string, imageUrl: string, measureDateTime: string, measureType: string, measureValue: number) {
     const measureUuid = uuidv4();
-
+    
     await dbConnection.execute<QueryResult>(
       'INSERT INTO readings (image_url, customer_code, measure_value, measure_datetime, measure_type, measure_uuid) VALUES (?, ?, ?, ?, ?, ?)',
       [imageUrl, customerCode, measureValue, measureDateTime, measureType, measureUuid]

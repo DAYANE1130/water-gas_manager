@@ -11,13 +11,29 @@ const measureImageUploadService = {
 
     // Chama o serviço Gemini para processar a imagem
     const result = await geminiIntegrationService.generateContextGemini(image);
+    //console.log('entrei o isNAN  e cheguei ate aqui sou a resposta do gemini', result)
 
-    if (!result || !result.image_url || !result.measure_value) {
+    // if (!result || !result.image_url || !result.measure_value) {
+    //   // 05/12 acredito que agora vai entrar aqui por que estou retornando false na camada de integração antes estava usando throw
+    //   return {
+    //     success: false, error: { error_code: "BAD_REQUEST", error_description: 'Erro ao fazer leitura' }
+    //   }
+    // }
+    if(result === false){
+      return {success:false, error: { error_code: "BAD_REQUEST", error_description: 'Erro ao fazer o upload da imagem' }}
+    }
+    if (result && result.success === false) {
       return {
-        success: false, error: { error_code: "BAD_REQUEST", error_description: 'Erro ao fazer leitura' }
+        success: result.success, error: {
+          error_code: result.error.error_code,
+          error_description: result.error.error_description
+
+        }
       }
     }
-
+    // return { //05/12
+    //   success: false, error: { error_code: "BAD_REQUEST", error_description: result.error?.error_description }
+    // }
     return { success: true, data: result };
 
 
@@ -25,7 +41,7 @@ const measureImageUploadService = {
 
   // Obtém as leituras do mês para o tipo de leitura e cliente
   async checkCurrentMonthMeasurements(customerCode: string, measureDatetime: string, measureType: string) {
- 
+
     const readings = await uploadModel.getMonthlyReadings(customerCode, measureType, measureDatetime);
 
     // Verifica se já existe uma leitura no mês para o tipo de leitura e cliente
@@ -45,7 +61,8 @@ const measureImageUploadService = {
     }
     // Verifica se upload e leitura do Gemini deu certo
     const uploadResult = await measureImageUploadService.processImageUpload(image);
-   
+   // console.log('eu sou o uploadResult da service', uploadResult)
+
     if (!uploadResult.success) {
       return { success: false, error: uploadResult.error };
     }
@@ -73,7 +90,7 @@ const measureImageUploadService = {
 
 
     const measures = await uploadModel.getCustomer(customerId);
-   
+
     //FALTA TIPAR PARA PEGAR O ERRO NO CONTROLLER
     if (measures.length === 0) {
       return {
